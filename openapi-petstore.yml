@@ -4,7 +4,7 @@ info:
   description: OpenAPI 3 spec for petstore-api-flask
   version: "0.1"
 servers:
-- url: https://petstore-api-python.vc-labs.cloud
+- url: http://192.168.56.1:5000
 components: 
   securitySchemes:
     bearerAuth:
