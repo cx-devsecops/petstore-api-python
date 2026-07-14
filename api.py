@@ -189,7 +189,22 @@ def addPet():
     except Exception as e:
         print(e)
 
+### GET A PET BY ID
+@app.route('/pet/<id>', methods=['GET', 'TRACE', 'OPTIONS'])
+def onePet(id):
+    try:
+        conn = mysql.connect()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        cursor.execute("SELECT * FROM pets WHERE id='%s'" %  (id))
 
+        petRow = cursor.fetchone()
+        if petRow:
+            return jsonify(petRow), 200
+        else:
+            return jsonify(message="Pet does not exist"), 404
+    except Exception as e:
+        print(e)
+        
 ### DELETE A PET BY ID
 @app.route('/pet/<id>', methods=['DELETE'])
 def deletePet(id):
